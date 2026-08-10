@@ -1,4 +1,12 @@
-// print second largest element in array
+// check the array is sorted or not
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+
+
 
 int main() {
     
@@ -8,30 +16,19 @@ int main() {
     for(int i = 0; i<n; i++){
         cin>>arr[i];
     }
-    int largest = arr[0] ;
-    int secondlargest = arr[0];
-    for(int i = 0 ; i<n ; i++){
-        if(arr[i]>largest){
-            largest = arr[i];
+    for(int i = 1 ; i<n ; i ++){
+        if(arr[i]>=arr[i-1]){
+           
         }
+       else{
+        cout<<"false";
+        break;
     }
-    for(int i = 0 ; i<n; i++){
-        if(arr[i]>secondlargest && arr[i]<largest){
-            secondlargest = arr[i];
-        }
-    }
-    cout<<secondlargest<<endl;
-    return 0;
+      cout<<"true";
+      break;
+    
 }
-        
-     
-
-    
-   
-
-    
-    
-    
    
     return 0;
 }
+
