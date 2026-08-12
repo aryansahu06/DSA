@@ -1,33 +1,41 @@
-// left rotate array by d
+#include <stdio.h>
+#include <conio.h>
+#include <iostream>
+#include <vector>
 
-void leftrotation(int arr[] , int n , int d){
-    d = d%n;
-    int temp[d];
-    for(int i = 0 ; i<d ; i++){
-        temp[i] = arr[i];
-    }
-    for(int i = d ; i<n ; i++){
-        arr[i-d] = arr[i];
-    }
-    for(int i = n-d ; i<n; i++){
-        arr[i] = temp[i-(n-d)];
-    }
-}
+using namespace std;
+
+// MOVES ZERO TO THE END
 
 int main()
 {
     int n;
     cin >> n;
     int arr[n];
-    int d ; 
-    cin>>d;
+    vector<int> temp;
+    int nz;
     for (int i = 0; i < n; i++)
     {
 
         cin >> arr[i];
     }
-    leftrotation(arr,n ,d);
-   
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] != 0)
+        {
+            temp.push_back(arr[i]);
+        }
+    }
+    nz = temp.size();
+    for (int i = 0; i < nz; i++)
+    {
+        arr[i] = temp[i];
+    }
+    for (int i = nz; i < n; i++)
+    {
+        arr[i] = 0;
+    }
+
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
