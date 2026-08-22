@@ -1,24 +1,25 @@
 #include <iostream>
-#include <vector>
+
 using namespace std;
 
 int main()
 {
-    int n = 5;
-    int a = n * (n + 1) / 2;
-
-    int arr[n] = {1, 2, 3, 5};
-    int sum = 0;
-
-    for (int i = 0; i < 4; i++)
+    int n = 7;
+    int arr[n] = {1, 1, 1, 1, 1, 1, 0, 1};
+    int count = 0;
+    int maxCount = 0;
+    for (int i = 0; i < n; i++)
     {
-        sum = sum + arr[i];
+        if (arr[i] == 1)
+        {
+            count++;
+            maxCount = max(maxCount, count);
+        }
+        else
+        {
+            count = 0;
+        }
     }
-    if (sum != a)
-    {
-        int k = a - sum;
-        cout << "your missing number is :- " << k << endl;
-    }
-
+    cout << maxCount;
     return 0;
 }
