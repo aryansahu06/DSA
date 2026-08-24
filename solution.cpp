@@ -5,40 +5,44 @@
 
 using namespace std;
 
-int longestarray(int n, vector<int> &book, int target)
+int sortarray(int n, vector<int> &arr)
+
 {
-    int left = 0;
-    int right = n - 1;
-    sort(book.begin(), book.end());
-
-    while (left < right)
+    int low = 0;
+    int mid = 0;
+    int high = n - 1;
+    while (mid <= high)
     {
-        int sum = book[left] + book[right];
-        if (sum == target)
+        if (arr[mid] == 0)
         {
-            cout << "YES";
-            return 1;
+            swap(arr[mid], arr[low]);
+            mid++;
+            low++;
         }
-        else if (sum < target)
+        else if (arr[mid] == 1)
         {
-            left++;
+            mid++;
         }
-
         else
         {
-            right--;
+            swap(arr[mid], arr[high]);
+            high--;
         }
     }
-    cout << "NO";
-    return 0;
 }
-int main()
-{
-    int n = 5;
-    vector<int> book = {2, 4, 5, 6, 9};
-    int target = 10;
-
-    longestarray(n, book, target);
-
-    return 0;
-}
+    int main()
+    {
+        int n;
+        cin >> n;
+        vector<int> arr(n);
+        for (int i = 0; i < n; i++)
+        {
+            cin >> arr[i];
+        }
+        sortarray(n, arr);
+        for (int i = 0; i < n; i++)
+        {
+            cout << arr[i] << " ";
+        }
+        return 0;
+    }
