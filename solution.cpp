@@ -5,31 +5,27 @@
 
 using namespace std;
 
-int sortarray(int n, vector<int> &arr)
+int majorityelement(int n, vector<int> &arr)
 
 {
-    int low = 0;
-    int mid = 0;
-    int high = n - 1;
-    while (mid <= high)
-    {
-        if (arr[mid] == 0)
-        {
-            swap(arr[mid], arr[low]);
-            mid++;
-            low++;
-        }
-        else if (arr[mid] == 1)
-        {
-            mid++;
-        }
-        else
-        {
-            swap(arr[mid], arr[high]);
-            high--;
-        }
+  int count = 0;
+  int el;
+  for(int i = 0; i<n; i++){
+    if(count==0){
+        count=1;
+        el = arr[i];
     }
-}
+    else if(arr[i]==el){
+        count++;
+    }
+    else{
+        count--;
+    }
+  }
+  return el;
+        }
+    
+
     int main()
     {
         int n;
@@ -39,10 +35,9 @@ int sortarray(int n, vector<int> &arr)
         {
             cin >> arr[i];
         }
-        sortarray(n, arr);
-        for (int i = 0; i < n; i++)
-        {
-            cout << arr[i] << " ";
-        }
+       int ans = majorityelement(n, arr);
+       
+            cout << ans <<endl;
+        
         return 0;
     }
