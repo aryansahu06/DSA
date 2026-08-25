@@ -1,3 +1,6 @@
+
+
+
 #include <iostream>
 #include <vector>
 #include <map>
@@ -5,24 +8,23 @@
 
 using namespace std;
 
-int majorityelement(int n, vector<int> &arr)
+long long Maximumsubarraysum(int n, vector<int> &arr)
 
 {
-  int count = 0;
-  int el;
+  int sum = 0;
+  long long max = INT64_MIN;
   for(int i = 0; i<n; i++){
-    if(count==0){
-        count=1;
-        el = arr[i];
+    sum += arr[i];
+    if(sum>max){
+        max = sum;
+    
     }
-    else if(arr[i]==el){
-        count++;
+    if(sum<0){
+        sum = 0;
     }
-    else{
-        count--;
-    }
+    
   }
-  return el;
+  return max;
         }
     
 
@@ -35,7 +37,7 @@ int majorityelement(int n, vector<int> &arr)
         {
             cin >> arr[i];
         }
-       int ans = majorityelement(n, arr);
+       int ans = Maximumsubarraysum(n, arr);
        
             cout << ans <<endl;
         
