@@ -1,6 +1,3 @@
-
-
-
 #include <iostream>
 #include <vector>
 #include <map>
@@ -8,38 +5,42 @@
 
 using namespace std;
 
-long long Maximumsubarraysum(int n, vector<int> &arr)
-
+vector<int> Rearrrangearray(vector<int> &arr)
 {
-  int sum = 0;
-  long long max = INT64_MIN;
-  for(int i = 0; i<n; i++){
-    sum += arr[i];
-    if(sum>max){
-        max = sum;
-    
-    }
-    if(sum<0){
-        sum = 0;
-    }
-    
-  }
-  return max;
-        }
-    
-
-    int main()
+    int n = arr.size();
+    int positivearray = 1;
+    int negativearray = 0;
+    vector<int> ans(n, 0);
+    for (int i = 0; i < n; i++)
     {
-        int n;
-        cin >> n;
-        vector<int> arr(n);
-        for (int i = 0; i < n; i++)
+        if (arr[i] < 0)
         {
-            cin >> arr[i];
+            ans[negativearray] = arr[i];
+            negativearray += 2;
         }
-       int ans = Maximumsubarraysum(n, arr);
-       
-            cout << ans <<endl;
-        
-        return 0;
+        else
+        {
+            ans[positivearray] = arr[i];
+            positivearray += 2;
+        }
     }
+    return ans;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    vector<int> ans = Rearrrangearray(arr);
+    for (int i = 0; i < n; i++)
+    {
+        cout << ans[i] << " ";
+    }
+
+    return 0;
+}
