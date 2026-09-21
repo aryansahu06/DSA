@@ -1,15 +1,51 @@
-int main()
+#include <iostream>
+#include <vector>
+using namespace std;
+void reverse(vector<int> &row)
 {
-    int arr[] = {18,22,8,9,15,4,3};
-    int n = 7;
-    int max = arr[n-1];
-    cout<< max << " ";
-    for(int i = n-2; i>=0 ; i--){
-        if(arr[i]>max){
-            max = arr[i];
-            cout<<max<< " ";
+    int start = 0;
+    int end = row.size() - 1;
+
+    while (start < end)
+    {
+        swap(row[start], row[end]);
+        start++;
+        end--;
+    }
+}
+void Rotatematrix(vector<vector<int>> &matrix)
+{
+    int n = matrix.size();
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            swap(matrix[i][j], matrix[j][i]);
         }
     }
 
-    return 0;
+    for (int i = 0; i < n; i++)
+    {
+        reverse(matrix[i]);
+    }
+}
+
+int main()
+{
+
+    vector<vector<int>> matrix = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}};
+
+    Rotatematrix(matrix);
+
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
 }
